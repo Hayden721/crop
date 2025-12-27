@@ -20,5 +20,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/deploy/cropapp
+            git pull
             docker compose pull
             docker compose up -d --force-recreate
+            docker image prune -f
+          
