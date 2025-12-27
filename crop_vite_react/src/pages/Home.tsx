@@ -1,0 +1,45 @@
+import { useState, useEffect } from "react";
+import axiosPlain from "../config/axiosPlain";
+const Home = () => {
+	const [testWord, setTestWord] = useState<string | undefined>('');
+	const [fastapiResponse, setFastapiResponse] = useState<string | undefined>('');
+	
+	useEffect(() => {
+		testFunc();
+		testFunc2(); 
+
+	}, []);
+	
+	const testFunc =() => {
+		axiosPlain.get("api/crop/test")
+		.then(response => {
+			setTestWord(response.data); // "test data" 값을 상태에 저장
+		})
+		.catch(error => {
+			console.error("API 호출 실패:", error);
+		});
+
+	}
+	const testFunc2 = () => {
+		axiosPlain.get("api/crop/test/fastapi")
+		.then(response => {
+			console.log("FastAPI 응답 : ", response.data.message);
+			setFastapiResponse(response.data.message)
+		})
+		.catch(error => {
+			console.error("FastAPI 호출 실패:", error);
+		})
+	}
+
+
+	return (
+		<div>
+			<p>하이</p>
+			<p>응답 : {testWord}</p>
+			<p>FAST API : {fastapiResponse}</p>
+
+		</div>
+	)
+}
+
+export default Home;

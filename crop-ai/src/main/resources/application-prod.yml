@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: crop-ai
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crop
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # 개발 중: update / validate / none / create / create-drop
+    show-sql: true       # 콘솔에 SQL 출력
+    properties:
+      hibernate:
+        format_sql: true # SQL 예쁘게 출력
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+react:
+  url: "http://react:5173"
+
+fastapi:
+  url: "http://fastapi:8000"
