@@ -37,7 +37,7 @@ const Home = () => {
 			<p>하이</p>
 			<p>응답 : {testWord}</p>
 			<p>FAST API : {fastapiResponse}</p>
-			<p>Docker + GitActions로 CI/CD 배포 성공했어요.</p>
+			<p>Docker + GitActions로 CI/CD 배포 성공했어요. 2트</p>
 		</div>
 	)
 }
