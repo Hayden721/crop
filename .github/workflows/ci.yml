@@ -37,7 +37,7 @@ jobs:
           push: true
           tags: hayden1233/crop-fastapi:latest
 
-      - name: Build & Push AI
+      - name: Build & Push SpringBoot
         uses: docker/build-push-action@v6
         with:
           context: ./crop-ai
