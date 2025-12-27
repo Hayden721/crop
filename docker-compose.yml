@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  frontend:
+  react:
     image: hayden1233/crop_vite_react:latest
-    container_name: crop-frontend
+    container_name: react-app
     expose:
       - 80
     restart: unless-stopped
