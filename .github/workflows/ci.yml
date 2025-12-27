@@ -1,0 +1,43 @@
+name: CI - Build & Push Images
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & Push React
+        uses: docker/build-push-action@v6
+        with:
+          context: ./crop_vite_react
+          push: true
+          tags: hayden1233/crop_vite_react:latest
+
+      - name: Build & Push FastAPI
+        uses: docker/build-push-action@v6
+        with:
+          context: ./crop_fastapi
+          push: true
+          tags: hayden1233/crop-fastapi:latest
+
+      - name: Build & Push AI
+        uses: docker/build-push-action@v6
+        with:
+          context: ./crop-ai
+          push: true
+          tags: hayden1233/crop-ai:latest

@@ -6,6 +6,7 @@ services:
     container_name: react-build
     volumes:
       - react_build:/dist
+    restart: "no"
 
   spring:
     image: hayden1233/crop-spring:latest
@@ -24,9 +25,9 @@ services:
     container_name: nginx-gateway
     ports:
       - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - react_build:/usr/share/nginx/html
+    volumes:      
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - react_build:/usr/share/nginx/html:ro   
     depends_on:
       - react
       - spring
