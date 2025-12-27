@@ -7,9 +7,10 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM alpine
+FROM nginx:alpine
 
-WORKDIR /dist
-COPY --from=builder /app/dist .
+# React 빌드 결과를 nginx 정적 경로로 복사
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-CMD ["sh", "-c", "echo 'React build complete'"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
