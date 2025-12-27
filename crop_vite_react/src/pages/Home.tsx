@@ -18,7 +18,7 @@ const Home = () => {
 		.catch(error => {
 			console.error("API 호출 실패:", error);
 		});
-
+		console.log("testFunc 실행됨");
 	}
 	const testFunc2 = () => {
 		axiosPlain.get("api/crop/test/fastapi")
